@@ -1,3 +1,4 @@
+
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
@@ -12,9 +13,14 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors({
-  origin: "http://localhost:5173"
-}));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://leave-management-system-three-zeta.vercel.app",
+    ],
+  })
+);
 
 app.use(express.json());
 
@@ -25,7 +31,7 @@ app.use("/api/leaves", leaveRoutes);
 // Test route
 app.get("/", (req, res) => {
   res.json({
-    message: "Leave Management System API is running!"
+    message: "Leave Management System API is running!",
   });
 });
 
