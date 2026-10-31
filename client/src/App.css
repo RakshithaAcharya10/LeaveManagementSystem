@@ -1,0 +1,96 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  background: linear-gradient(135deg, #e8efff, #f5f7ff, #e4eaff);
+  font-family: Arial, sans-serif;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 440px;
+  padding: 40px !important;
+  border-radius: 18px !important;
+  background: #ffffff;
+  box-shadow: 0 12px 40px rgba(35, 55, 100, 0.12) !important;
+}
+
+.login-icon {
+  width: 65px;
+  height: 65px;
+  border-radius: 16px;
+  background: #e8edff;
+  color: #3455db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.login-title {
+  text-align: center;
+  font-weight: 700 !important;
+  color: #172554;
+}
+
+.login-subtitle {
+  text-align: center;
+  color: #718096;
+  margin-top: 10px !important;
+  margin-bottom: 30px !important;
+  font-size: 14px !important;
+}
+
+.role-label,
+.field-label {
+  color: #344054;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  margin-top: 18px !important;
+}
+
+.role-toggle {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.role-toggle .Mui-selected {
+  background-color: #e8edff !important;
+  color: #3455db !important;
+}
+
+.login-button {
+  margin-top: 28px !important;
+  padding: 13px !important;
+  background: #3455db !important;
+  text-transform: none !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  border-radius: 9px !important;
+}
+
+.login-button:hover {
+  background: #243fb5 !important;
+}
+
+.login-footer {
+  text-align: center;
+  color: #98a2b3;
+  font-size: 12px !important;
+  margin-top: 28px !important;
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 25px !important;
+  }
+}
