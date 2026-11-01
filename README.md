@@ -1,73 +1,69 @@
 # Leave Management System
 
-## Live Application
+A full-stack web application developed using the MERN stack to manage employee leave applications, leave balances, and administrative approvals.
+
+## 1. Live Application
 
 - **Frontend:** https://leave-management-system-three-zeta.vercel.app/
 - **Backend API:** https://leave-management-api-pu58.onrender.com/
-- **GitHub Repository:** https://github.com/RakshithaAcharya10/LeaveManagementSystem
+- **GitHub:** https://github.com/RakshithaAcharya10/LeaveManagementSystem
 
-## Project Overview
+## 2. Project Overview
 
-The Leave Management System is a web-based application developed using the MERN stack. It allows employees to apply for leave, track their leave requests, and check their leave balances. Administrators can view employee leave requests and approve or reject them with remarks.
+The Leave Management System allows employees to register, log in, apply for leave, check leave balances, and track request statuses. Administrators can view leave requests, approve or reject them, and provide remarks.
 
-## Technologies Used
+## 3. Features
 
-### Frontend
-- React.js
-- Material UI
-- Axios
-- React Router DOM
-- HTML and CSS
-- Vite
+**Employee**
+- Registration and login.
+- Apply for Casual, Sick, and Earned Leave.
+- View leave balances and history.
+- Track leave request status.
 
-### Backend
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- JWT Authentication
-- bcryptjs
+**Admin**
+- Secure admin login.
+- View all employee leave requests.
+- Approve or reject leave applications.
+- Add remarks and view request summaries.
 
-### Deployment and Services
-- GitHub – Source code management
-- Vercel – Frontend hosting
-- Render – Backend hosting
-- MongoDB Atlas – Cloud database
+**Security**
+- JWT authentication.
+- Password hashing using bcryptjs.
+- Role-based access control.
+- Protected frontend routes and backend APIs.
 
-## Features
+## 4. Technology Stack
 
-### Employee
-- Employee registration and login
-- Apply for leave
-- View leave history
-- Check leave balances
-- View leave request status
+| Frontend | Backend | Database |
+|---|---|---|
+| React.js | Node.js | MongoDB |
+| Material UI | Express.js | MongoDB Atlas |
+| Axios | Mongoose | |
+| React Router DOM | JWT | |
+| HTML, CSS, Vite | bcryptjs | |
 
-### Admin
-- Admin login
-- View all employee leave requests
-- Approve or reject leave requests
-- Add remarks to leave requests
-- View leave request summaries
+**Deployment:** GitHub, Vercel, Render, MongoDB Atlas.
 
-### Security
-- JWT-based authentication
-- Password hashing
-- Role-based access control
-- Protected frontend routes
-- Protected backend API routes
+## 5. Application Architecture
 
-## Application Architecture
+The application follows a client-server architecture.
 
-The application follows a client-server architecture:
+```text
+Employee / Admin
+       |
+       v
+React.js Frontend (Vercel)
+       |
+       | Axios API Requests
+       v
+Node.js + Express.js (Render)
+       |
+       | Mongoose
+       v
+MongoDB Atlas
+```
 
-1. React frontend is hosted on Vercel.
-2. Axios sends HTTP requests from the frontend to the Express backend.
-3. Node.js and Express handle authentication and leave management operations.
-4. Mongoose communicates with MongoDB Atlas.
-5. JWT authentication protects authorized API operations.
-
-## Project Structure
+## 6. Project Structure
 
 ```text
 LeaveManagementSystem/
@@ -90,30 +86,25 @@ LeaveManagementSystem/
 └── README.md
 ```
 
-## Installation and Setup
+## 7. Installation and Setup
 
-### Prerequisites
-- Node.js and npm
-- MongoDB (local installation or MongoDB Atlas)
-- Git
+**Prerequisites:** Node.js, npm, Git, and MongoDB or MongoDB Atlas.
 
-### 1. Clone the Repository
+**Step 1: Clone the repository**
 
 ```bash
 git clone https://github.com/RakshithaAcharya10/LeaveManagementSystem.git
 cd LeaveManagementSystem
 ```
 
-### 2. Install Backend Dependencies
+**Step 2: Install backend dependencies**
 
 ```bash
 cd server
 npm install
 ```
 
-### 3. Configure Backend Environment Variables
-
-Create a `.env` file inside the `server` directory:
+**Step 3: Configure `server/.env`**
 
 ```env
 PORT=5000
@@ -121,105 +112,117 @@ MONGO_URI=mongodb://127.0.0.1:27017/LeaveManagementSystem
 JWT_SECRET=your_private_secret_key
 ```
 
-Use your own MongoDB connection string and a strong private JWT secret. Never commit `.env` files or share their contents.
+Use your own MongoDB connection string and a secure JWT secret.
 
-### 4. Start the Backend
+**Step 4: Start the backend**
 
 ```bash
 npm run dev
 ```
 
-If the development script is not available, use:
+If the development script is unavailable:
 
 ```bash
 node server.js
 ```
 
-### 5. Install Frontend Dependencies
+**Step 5: Install frontend dependencies**
 
-Open another terminal from the project root:
+Open another terminal:
 
 ```bash
 cd client
 npm install
 ```
 
-### 6. Start the Frontend
+**Step 6: Configure `client/.env`**
+
+```env
+VITE_API_URL=http://localhost:5000
+```
+
+**Step 7: Start the frontend**
 
 ```bash
 npm run dev
 ```
 
-Open the application at:
+Open: http://localhost:5173/
 
-http://localhost:5173/
+## 8. Environment Variables
 
-## Database
+| Variable | Location | Description |
+|---|---|---|
+| `PORT` | Backend | Server port |
+| `MONGO_URI` | Backend | MongoDB connection string |
+| `JWT_SECRET` | Backend | JWT signing secret |
+| `CLIENT_URL` | Backend | Frontend URL for CORS, if configured |
+| `VITE_API_URL` | Frontend | Backend API base URL |
 
-- **Database:** LeaveManagementSystem
-- **Database service:** MongoDB / MongoDB Atlas
+**Production frontend configuration:**
 
-Collections:
-- users
-- leaves
+```env
+VITE_API_URL=https://leave-management-api-pu58.onrender.com
+```
 
-## API Endpoints
+Never commit `.env` files or expose passwords and secret keys.
+
+## 9. Database
+
+**Database:** `LeaveManagementSystem`  
+**Service:** MongoDB Atlas
+
+| Collection | Purpose |
+|---|---|
+| `users` | Employee and admin details, roles, and leave balances |
+| `leaves` | Leave applications, dates, statuses, and admin remarks |
+
+## 10. API Endpoints
+
+**Base URL:** `https://leave-management-api-pu58.onrender.com/api`
 
 | Method | Endpoint | Description |
 |---|---|---|
-| POST | `/api/auth/register` | Register employee |
-| POST | `/api/auth/login` | Login |
-| POST | `/api/leaves` | Apply for leave |
-| GET | `/api/leaves/my-leaves` | View employee leave history |
-| GET | `/api/leaves` | View all leave requests (Admin) |
-| PATCH | `/api/leaves/:id/status` | Approve or reject leave (Admin) |
+| POST | `/auth/register` | Employee registration |
+| POST | `/auth/login` | Employee/admin login |
+| POST | `/leaves` | Apply for leave |
+| GET | `/leaves/my-leaves` | View employee leave history |
+| GET | `/leaves` | View all leave requests (Admin) |
+| PATCH | `/leaves/:id/status` | Approve/reject leave (Admin) |
 
-## Deployment
+Protected endpoints require a JWT token:
 
-The application is deployed using GitHub, Render, Vercel, and MongoDB Atlas.
+```text
+Authorization: Bearer <JWT_TOKEN>
+```
 
-### Hosting Platforms
+## 11. Deployment
 
-- **Frontend:** Vercel
-- **Backend:** Render
-- **Database:** MongoDB Atlas
-- **Source Code:** GitHub
+The application is hosted using:
 
-### Deployment Approach
+- **Vercel:** React frontend.
+- **Render:** Node.js and Express backend.
+- **MongoDB Atlas:** Cloud database.
+- **GitHub:** Source code repository.
 
-1. The project source code is maintained in GitHub.
-2. The backend repository is connected to Render.
-3. Render installs backend dependencies using `npm install` and starts the application using `node server.js`.
-4. MongoDB Atlas stores application data in the cloud.
-5. The React frontend is connected to the GitHub repository and deployed through Vercel.
-6. The frontend uses the `VITE_API_URL` environment variable to communicate with the deployed backend.
-7. The backend CORS configuration allows requests from the deployed frontend.
+**Deployment Steps**
 
-### Environment Variables
+1. Push the project code to GitHub.
+2. Connect the repository to Render and configure the backend root directory as `server`.
+3. Set the build command to `npm install` and start command to `node server.js`.
+4. Configure backend environment variables in Render.
+5. Connect the repository to Vercel and set the frontend root directory to `client`.
+6. Configure `VITE_API_URL` with the Render backend URL.
+7. Deploy the frontend and backend.
+8. Configure backend CORS to allow the deployed frontend URL.
 
-**Backend – Render**
+**Updating the Application**
 
-| Variable | Description |
-|---|---|
-| `PORT` | Server port provided by Render |
-| `MONGO_URI` | MongoDB Atlas connection string |
-| `JWT_SECRET` | Private JWT signing secret |
-| `CLIENT_URL` | Deployed frontend URL, if configured |
+1. Make and test code changes locally.
+2. Commit and push changes to the GitHub `main` branch.
+3. Render and Vercel automatically deploy the updated backend and frontend.
+4. Verify the live application.
 
-**Frontend – Vercel**
+## 12. Conclusion
 
-| Variable | Description |
-|---|---|
-| `VITE_API_URL` | Deployed backend URL |
-
-### Updating the Deployment
-
-1. Make the required changes to the source code.
-2. Commit and push the changes to the GitHub `main` branch.
-3. Render automatically deploys backend changes.
-4. Vercel automatically builds and deploys frontend changes.
-5. Verify the live application after deployment.
-
-## Conclusion
-
-The Leave Management System provides a simple solution for employee leave applications and administrative leave approvals. It includes authentication, role-based access, leave balance tracking, request management, and cloud deployment using the MERN stack.
+The Leave Management System simplifies employee leave management through registration, authentication, leave applications, balance tracking, and administrator approvals. It demonstrates full-stack development, REST API integration, database management, and cloud deployment using the MERN stack.
